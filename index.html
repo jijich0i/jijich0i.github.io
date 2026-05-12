@@ -203,15 +203,21 @@ nav {
 .slideshow {
   position: relative; overflow: hidden;
   height: 500px; background: #111;
+  width: 100%;
 }
 .slideshow-track {
-  display: flex; flex-direction: row; flex-wrap: nowrap;
+  position: relative;
   height: 100%; width: 100%;
-  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .slideshow-track img {
-  flex: 0 0 100%; width: 100%; height: 100%;
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
   object-fit: contain; object-position: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.slideshow-track img.active {
+  opacity: 1;
 }
 .slideshow-btns {
   position: absolute; bottom: 0.8rem; right: 0.8rem;
@@ -733,11 +739,19 @@ function slide(id, dir) {
   if (!slideshows[id]) slideshows[id] = { idx: 0 };
   const track = document.getElementById(`${id}-track`);
   const counter = document.getElementById(`${id}-counter`);
-  const total = track.children.length;
+  const imgs = track.querySelectorAll('img');
+  const total = imgs.length;
+  imgs[slideshows[id].idx].classList.remove('active');
   slideshows[id].idx = (slideshows[id].idx + dir + total) % total;
-  track.style.transform = `translateX(-${slideshows[id].idx * 100}%)`;
+  imgs[slideshows[id].idx].classList.add('active');
   counter.textContent = `${slideshows[id].idx + 1} / ${total}`;
 }
+
+// init slideshows
+document.querySelectorAll('.slideshow-track').forEach(track => {
+  const imgs = track.querySelectorAll('img');
+  if (imgs.length > 0) imgs[0].classList.add('active');
+});
 
 // ── FILTER ──
 document.querySelectorAll('.filter-btn').forEach(btn => {
