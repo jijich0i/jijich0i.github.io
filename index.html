@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JiJi Choi</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg: #0c0c0e;
+  --text: #e6e2d8;
+  --muted: rgba(230,226,216,0.45);
+  --dim: rgba(230,226,216,0.2);
+  --accent: #c8a96e;
+  --border: rgba(230,226,216,0.09);
+  --surface: #111115;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.2rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(12,12,14,0.95);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; letter-spacing: 0.12em;
+  color: var(--text); text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 80px;
+}
+.hero-kicker {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 2rem;
+}
+.hero-name {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 400; line-height: 1;
+  letter-spacing: -0.02em;
+}
+.hero-name em { font-style: italic; color: var(--accent); }
+.hero-bio {
+  margin-top: 2.5rem;
+  font-size: 1.15rem; color: var(--muted);
+  max-width: 540px; line-height: 1.85;
+}
+.hero-bio strong { color: var(--text); font-weight: 400; }
+.hero-bio em { font-style: italic; }
+.hero-meta {
+  margin-top: 3rem;
+  display: flex; gap: 2.5rem; flex-wrap: wrap;
+}
+.hero-meta-item {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em;
+  color: var(--dim); text-transform: uppercase;
+}
+.hero-meta-item span { color: var(--muted); }
+
+/* WORK */
+.work {
+  max-width: 960px; margin: 0 auto;
+  padding: 5rem 3rem 6rem;
+  border-top: 1px solid var(--border);
+}
+.section-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 2.5rem;
+}
+.section-title {
+  font-size: 1rem; font-weight: 400;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* FILTER */
+.filter-bar {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.filter-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--dim);
+  cursor: pointer; transition: all 0.2s;
+}
+.filter-btn:hover { color: var(--muted); border-color: rgba(230,226,216,0.2); }
+.filter-btn.active { color: var(--accent); border-color: rgba(200,169,110,0.4); }
+
+/* PROJECT LIST */
+.project-list { display: flex; flex-direction: column; }
+.project-item {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  gap: 0 2rem;
+  align-items: start;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.project-item:first-child { border-top: 1px solid var(--border); }
+.project-item.hidden { display: none; }
+
+.project-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; color: var(--dim);
+  letter-spacing: 0.08em; padding-top: 4px;
+}
+.project-body { }
+.project-top {
+  display: flex; align-items: baseline; gap: 1rem;
+  margin-bottom: 0.6rem; flex-wrap: wrap;
+}
+.project-title {
+  font-size: 1.25rem; font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.project-title em { font-style: italic; color: var(--accent); }
+.project-course {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.08em;
+  color: var(--dim); text-transform: uppercase;
+}
+.project-desc {
+  font-size: 0.95rem; color: var(--muted);
+  line-height: 1.7; margin-bottom: 1rem;
+  max-width: 620px;
+}
+.project-desc strong { color: var(--text); font-weight: 400; }
+.project-stack {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+.stack-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.06em;
+  color: var(--dim); padding: 2px 7px;
+  border: 1px solid var(--border);
+}
+.project-tag-col {
+  padding-top: 4px;
+}
+.ptag {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 8px; border: 1px solid;
+  white-space: nowrap;
+}
+.ptag.art { color: #c4956a; border-color: rgba(196,149,106,0.3); }
+.ptag.code { color: #7aafc9; border-color: rgba(122,175,201,0.3); }
+.ptag.research { color: #8fc49a; border-color: rgba(143,196,154,0.3); }
+.ptag.film { color: #c47a7a; border-color: rgba(196,122,122,0.3); }
+
+/* MEDIA */
+.project-media {
+  margin-top: 1.5rem;
+}
+.video-wrap {
+  position: relative; padding-bottom: 56.25%;
+  height: 0; overflow: hidden;
+  background: #000;
+}
+.video-wrap iframe {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; border: 0;
+}
+
+/* SLIDESHOW */
+.slideshow {
+  position: relative; overflow: hidden;
+  height: 480px; background: #111;
+}
+.slideshow-track {
+  display: flex; height: 100%;
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.slideshow-track img {
+  min-width: 100%; height: 100%;
+  object-fit: contain; object-position: center;
+  flex-shrink: 0;
+}
+.slideshow-btns {
+  position: absolute; bottom: 0.8rem; right: 0.8rem;
+  display: flex; gap: 0.4rem;
+}
+.slideshow-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; color: var(--text);
+  background: rgba(12,12,14,0.7);
+  border: 1px solid var(--border);
+  padding: 4px 10px; cursor: pointer;
+  transition: background 0.2s;
+}
+.slideshow-btn:hover { background: rgba(12,12,14,0.95); }
+.slideshow-counter {
+  position: absolute; bottom: 0.8rem; left: 0.8rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; color: var(--muted);
+  background: rgba(12,12,14,0.7);
+  padding: 4px 8px;
+}
+
+/* ABOUT */
+.about {
+  max-width: 960px; margin: 0 auto;
+  padding: 5rem 3rem 6rem;
+  border-top: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 5rem; align-items: start;
+}
+.about-left { }
+.about-right { }
+.about-p {
+  font-size: 1.05rem; color: var(--muted);
+  line-height: 1.9; margin-bottom: 1.4rem;
+}
+.about-p strong { color: var(--text); font-weight: 400; }
+.about-p em { font-style: italic; color: var(--accent); }
+.about-langs {
+  display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 2rem;
+}
+.lang-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 10px; border: 1px solid var(--border);
+  color: var(--dim);
+}
+
+/* CONTACT */
+.contact {
+  max-width: 960px; margin: 0 auto;
+  padding: 5rem 3rem 6rem;
+  border-top: 1px solid var(--border);
+}
+.contact-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400; letter-spacing: -0.02em;
+  margin-bottom: 3rem; line-height: 1.1;
+}
+.contact-heading em { font-style: italic; color: var(--accent); }
+.contact-links { max-width: 480px; }
+.contact-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 0; border-bottom: 1px solid var(--border);
+  text-decoration: none; color: var(--text); transition: all 0.2s;
+}
+.contact-row:first-child { border-top: 1px solid var(--border); }
+.contact-row:hover { padding-left: 0.5rem; }
+.cr-key {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--dim); transition: color 0.2s;
+}
+.contact-row:hover .cr-key { color: var(--accent); }
+.cr-val { font-size: 0.95rem; color: var(--muted); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 3rem;
+  display: flex; justify-content: space-between;
+  max-width: 100%;
+}
+footer span {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em; color: var(--dim);
+}
+
+/* FOCUS BANNER */
+#focus-banner {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.9rem 0; margin-bottom: 2rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.fb-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--dim);
+}
+.fb-role {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em;
+  color: var(--accent);
+}
+.fb-reset {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px; letter-spacing: 0.1em;
+  color: var(--dim); text-decoration: none;
+  margin-left: auto; transition: color 0.2s;
+}
+.fb-reset:hover { color: var(--muted); }
+
+.project-item.focus-highlight {
+  border-left: 2px solid var(--accent);
+  padding-left: 1.2rem;
+}
+.project-item.focus-highlight .project-num {
+  color: var(--accent);
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.6s, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .hero, .work, .about, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .about { grid-template-columns: 1fr; gap: 2.5rem; }
+  .project-item { grid-template-columns: 1.5rem 1fr; }
+  .project-tag-col { display: none; }
+  footer { padding: 1.2rem 1.5rem; flex-direction: column; gap: 0.4rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">JiJi Choi</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-kicker">Creative Technologist · Researcher · Artist</p>
+  <h1 class="hero-name">JiJi<br><em>Choi</em></h1>
+  <p class="hero-bio">
+    I make things that <strong>feel</strong> — at the intersection of neuroscience, computation, and art. My work asks: <em>what do we lose when we forget, and what stays in the body?</em>
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">GPA <span>3.90 · Provost Honors</span></div>
+    <div class="hero-meta-item">Languages <span>KO · EN · FR</span></div>
+    <div class="hero-meta-item">Based <span>San Diego, CA</span></div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="section-header reveal">
+    <span class="section-title">Selected Work</span>
+  </div>
+
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="art">Art & Installation</button>
+    <button class="filter-btn" data-filter="code">Code & Data</button>
+    <button class="filter-btn" data-filter="research">Research</button>
+    <button class="filter-btn" data-filter="film">Film & Photo</button>
+  </div>
+
+  <div class="project-list">
+
+    <div class="project-item reveal" data-category="art">
+      <span class="project-num">01</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title"><em>Sediments</em> of Memory</h3>
+          <span class="project-course">VIS 110A · 2026</span>
+        </div>
+        <p class="project-desc">Interactive installation exploring Alzheimer's and bodily memory. A viewer turns a hand crank to illuminate 20 zones of light — physical movement translated into visual unfolding. Each zone filtered through coloured materials as emotional lenses. Inspired by Bessel van der Kolk's <em>The Body Keeps the Score</em>.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Arduino</span>
+          <span class="stack-tag">LED Strip</span>
+          <span class="stack-tag">Hand Crank</span>
+          <span class="stack-tag">Installation Art</span>
+        </div>
+        <div class="project-media">
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/0k6btfgf7tw?rel=0" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag art">Installation</span></div>
+    </div>
+
+    <div class="project-item reveal" data-category="film">
+      <span class="project-num">02</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title"><em>Lost</em></h3>
+          <span class="project-course">VIS 164 · 2025 · Gallery Exhibition</span>
+        </div>
+        <p class="project-desc">Film photography series honouring my grandfather — who fled North Korea during the Korean War and raised me — now living with Alzheimer's. Korean cultural objects photographed against stark backgrounds. Objects as memory.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Film Photography</span>
+          <span class="stack-tag">Gallery Exhibition</span>
+          <span class="stack-tag">Cultural Memory</span>
+        </div>
+        <div class="project-media">
+          <div class="slideshow" id="lost-slideshow">
+            <div class="slideshow-track" id="lost-track">
+              <img src="images/placement.jpg" alt="Lost — gallery installation">
+              <img src="images/1.jpg" alt="Lost — taegeukgi">
+              <img src="images/3.jpg" alt="Lost — Korean bell pavilion">
+              <img src="images/4.jpg" alt="Lost — exfoliating towel">
+              <img src="images/5.jpg" alt="Lost — fan">
+              <img src="images/6.jpg" alt="Lost — souvenir pouch">
+              <img src="images/7.jpg" alt="Lost — drum">
+              <img src="images/8.jpg" alt="Lost — framed photo">
+            </div>
+            <span class="slideshow-counter" id="lost-counter">1 / 8</span>
+            <div class="slideshow-btns">
+              <button class="slideshow-btn" onclick="slide('lost',-1)">←</button>
+              <button class="slideshow-btn" onclick="slide('lost',1)">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag film">Photography</span></div>
+    </div>
+
+    <div class="project-item reveal" data-category="code">
+      <span class="project-num">03</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title">Tide <em>Ink</em></h3>
+          <span class="project-course">VIS 141B · 2025</span>
+        </div>
+        <p class="project-desc">Live NOAA tidal data rendered as flowing ink across a <strong>4×5 screen wall (20 displays)</strong>. MPI distributes computation across nodes; tide height drives particle energy, colour, and flow frequency in real time. The whole wall reads as one continuous body of water.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">MPI4py</span>
+          <span class="stack-tag">Pygame</span>
+          <span class="stack-tag">NOAA API</span>
+          <span class="stack-tag">Particle Systems</span>
+        </div>
+        <div class="project-media">
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/9pVUBeMXvKc" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag code">Data Viz</span></div>
+    </div>
+
+    <div class="project-item reveal" data-category="research">
+      <span class="project-num">04</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title">Linguistic <em>Interference</em></h3>
+          <span class="project-course">COGS 189 · 2026</span>
+        </div>
+        <p class="project-desc">EEG analysis of how background audio type — understood lyrics, foreign lyrics, instrumental, speech — affects cognitive load. Alpha/Beta band power computed to derive an Engagement Index across conditions.</p>
+        <div class="project-stack">
+          <span class="stack-tag">EEG / MNE</span>
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Signal Processing</span>
+          <span class="stack-tag">YASA</span>
+        </div>
+        <div class="project-media">
+          <img src="images/eeg_1.png" alt="Subject-Level Change in Frontal Beta Power" style="width:100%;display:block;border:1px solid var(--border);">
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag research">Neuroscience</span></div>
+    </div>
+
+    <div class="project-item reveal" data-category="art">
+      <span class="project-num">05</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title">Real-time <em>Pixel</em> Pipeline</h3>
+          <span class="project-course">VIS Studio · 2025</span>
+        </div>
+        <p class="project-desc">Node-based network in TouchDesigner with live pixel manipulation — Displacement, Contrast, Pro-Black Level — creating generative art that responds to parameter input with zero latency. Experiments in Visual Hierarchy and Flow state induction.</p>
+        <div class="project-stack">
+          <span class="stack-tag">TouchDesigner</span>
+          <span class="stack-tag">GLSL</span>
+          <span class="stack-tag">Generative Art</span>
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag art">Generative</span></div>
+    </div>
+
+    <div class="project-item reveal" data-category="code">
+      <span class="project-num">06</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title">Predicting <em>Song</em> Popularity</h3>
+          <span class="project-course">COGS 108 · 2025</span>
+        </div>
+        <p class="project-desc">Can audio features predict Spotify popularity? 2,000-song dataset, full EDA, statistical modelling. Finding: audio features alone are surprisingly poor predictors — raising deeper questions about what makes music resonate.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Pandas</span>
+          <span class="stack-tag">scikit-learn</span>
+          <span class="stack-tag">Spotify API</span>
+        </div>
+        <div class="project-media">
+          <img src="images/spotify_0.png" alt="Correlation Matrix of Audio Features" style="width:100%;display:block;border:1px solid var(--border);">
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag code">Data Science</span></div>
+    </div>
+
+    <div class="project-item reveal" data-category="research">
+      <span class="project-num">07</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title">Auditory <em>Cognition</em> RA</h3>
+          <span class="project-course">UCSD Lab · 2025–2026</span>
+        </div>
+        <p class="project-desc">Research assistant investigating how humans recognise and label everyday household sounds. Binaural recordings at ear-canal level for rich spatial audio. Custom experiment: confidence sliders, free-response descriptors, experiential questionnaires.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Binaural Recording</span>
+          <span class="stack-tag">Experiment Design</span>
+          <span class="stack-tag">Psychoacoustics</span>
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag research">Research</span></div>
+    </div>
+
+    <div class="project-item reveal" data-category="research">
+      <span class="project-num">08</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title">Decision <em>Paralysis</em> on Streaming Platforms</h3>
+          <span class="project-course">COGS 13 · 2025</span>
+        </div>
+        <p class="project-desc">20 naturalistic observation sessions across dormitories and shared living spaces. Custom ethogram: participant type, navigation pattern, decision strategy, satisfaction. Key finding: groups average <strong>14.7 min</strong> to choose; solo viewers 6.3 min. Circular navigation reveals psychological loops of familiarity-seeking under choice overload.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Field Methods</span>
+          <span class="stack-tag">Behavioural Coding</span>
+          <span class="stack-tag">Interview Analysis</span>
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag research">Field Research</span></div>
+    </div>
+
+    <div class="project-item reveal" data-category="research">
+      <span class="project-num">09</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title">Portable Charger <em>Redesign</em></h3>
+          <span class="project-course">DSGN 1 · 2025</span>
+        </div>
+        <p class="project-desc">End-to-end UX process: user interviews, survey analysis, design space mapping, prototype proposal. Redesign introduced magnetic attachment, built-in cable, and real-time capacity display.</p>
+        <div class="project-stack">
+          <span class="stack-tag">User Interviews</span>
+          <span class="stack-tag">Design Space</span>
+          <span class="stack-tag">Prototyping</span>
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag research">UX Research</span></div>
+    </div>
+
+    <div class="project-item reveal" data-category="film">
+      <span class="project-num">10</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title"><em>It All Starts</em> When You Are Here</h3>
+          <span class="project-course">VIS Studio · 2024</span>
+        </div>
+        <p class="project-desc">Film photography of San Diego skateboarding culture, edited into a moving-image essay. Analogue grain, slow transitions, urban texture. An ode to presence and place.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Film Photography</span>
+          <span class="stack-tag">Video Editing</span>
+        </div>
+        <div class="project-media">
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/mF82eXubTX4" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag film">Film</span></div>
+    </div>
+
+    <div class="project-item reveal" data-category="film">
+      <span class="project-num">11</span>
+      <div class="project-body">
+        <div class="project-top">
+          <h3 class="project-title">VIS 70N — <em>Close Watch</em></h3>
+          <span class="project-course">VIS 70N · 2024 · Producer</span>
+        </div>
+        <p class="project-desc">Produced a narrative short film — suspense, dread, false safety. Coordinated crew of four, managed shoot logistics and post-production pipeline.</p>
+        <div class="project-stack">
+          <span class="stack-tag">Producer</span>
+          <span class="stack-tag">Narrative Film</span>
+          <span class="stack-tag">Team Leadership</span>
+        </div>
+        <div class="project-media">
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/ZcF__bl-8TE" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="project-tag-col"><span class="ptag film">Short Film</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-left reveal">
+    <span class="section-title">About</span>
+  </div>
+  <div class="about-right reveal">
+    <p class="about-p">I'm a graduating senior at <strong>UCSD</strong> double majoring in <strong>Cognitive Science (Language & Culture)</strong> and <strong>Interdisciplinary Computing & the Arts</strong>.</p>
+    <p class="about-p">My obsession with memory didn't begin in a lab. It began with my grandfather — who fled North Korea during the Korean War, raised me with his hands and his stories, and is now slowly forgetting me through Alzheimer's. Living across <strong>Korea, France, and the United States</strong>, I kept asking the same question in different languages: <em>what do we lose when we forget, and what stays in the body?</em></p>
+    <p class="about-p">In France, I wrote philosophy essays about whether forgetting is necessary for happiness. Back in San Diego, I built an Arduino installation where a hand crank illuminates fading light — an attempt to make Alzheimer's <em>felt</em>, not just understood. In between, I analysed EEG signals, rendered tidal data across 20 screens, and photographed Korean objects as acts of remembrance.</p>
+    <p class="about-p">I code, I research, and I make things that <strong>feel</strong>.</p>
+    <div class="about-langs">
+      <span class="lang-tag">Korean — Native</span>
+      <span class="lang-tag">English — Fluent</span>
+      <span class="lang-tag">French — Proficient</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="contact-heading reveal">Let's make something <em>together.</em></h2>
+  <div class="contact-links reveal">
+    <a href="mailto:jic169@ucsd.edu" class="contact-row">
+      <span class="cr-key">Email</span>
+      <span class="cr-val">jic169@ucsd.edu</span>
+    </a>
+    <a href="https://linkedin.com/in/jijichoi" target="_blank" class="contact-row">
+      <span class="cr-key">LinkedIn</span>
+      <span class="cr-val">linkedin.com/in/jijichoi</span>
+    </a>
+    <a href="https://github.com/jijich0i" target="_blank" class="contact-row">
+      <span class="cr-key">GitHub</span>
+      <span class="cr-val">github.com/jijich0i</span>
+    </a>
+    <a href="#" class="contact-row">
+      <span class="cr-key">Resume</span>
+      <span class="cr-val">Download PDF</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 JiJi Choi</span>
+  <span>UCSD · Cognitive Science × Computing & the Arts</span>
+</footer>
+
+<script>
+// ── URL FOCUS PARAM ──
+// ?focus=art   → Creative Technologist  (01, 03, 05)
+// ?focus=ux    → UX Researcher          (08, 09, 07)
+// ?focus=ai    → AI / Research          (04, 06, 07)
+// ?focus=film  → Film & Photo           (02, 10, 11)
+
+const FOCUS_MAP = {
+  art:  { label: 'Creative Technologist', ids: ['01','03','05','02','04','06','07','08','09','10','11'] },
+  ux:   { label: 'UX Researcher',         ids: ['08','09','07','04','06','01','03','05','02','10','11'] },
+  ai:   { label: 'AI / Research',         ids: ['04','06','07','03','08','01','05','09','02','10','11'] },
+  film: { label: 'Film & Photography',    ids: ['02','10','11','01','03','05','04','06','07','08','09'] },
+};
+
+function applyFocus(focus) {
+  if (!focus || !FOCUS_MAP[focus]) return;
+  const { label, ids } = FOCUS_MAP[focus];
+  const list = document.querySelector('.project-list');
+
+  // Show focus banner
+  const existing = document.getElementById('focus-banner');
+  if (existing) existing.remove();
+  const banner = document.createElement('div');
+  banner.id = 'focus-banner';
+  banner.innerHTML = `
+    <span class="fb-label">Curated for</span>
+    <span class="fb-role">${label}</span>
+    <a href="?" class="fb-reset">View all →</a>
+  `;
+  list.before(banner);
+
+  // Reorder items
+  const items = [...document.querySelectorAll('.project-item')];
+  const ordered = ids.map(id => items.find(p => p.querySelector('.project-num').textContent.trim() === id)).filter(Boolean);
+  ordered.forEach(item => list.appendChild(item));
+
+  // Highlight top 3
+  ordered.forEach((item, i) => {
+    item.classList.toggle('focus-highlight', i < 3);
+  });
+
+  // Re-number
+  ordered.forEach((item, i) => {
+    item.querySelector('.project-num').textContent = String(i + 1).padStart(2, '0');
+  });
+}
+
+const urlFocus = new URLSearchParams(window.location.search).get('focus');
+if (urlFocus) applyFocus(urlFocus);
+
+// ── SLIDESHOW ──
+const slideshows = {};
+function slide(id, dir) {
+  if (!slideshows[id]) slideshows[id] = { idx: 0 };
+  const track = document.getElementById(`${id}-track`);
+  const counter = document.getElementById(`${id}-counter`);
+  const total = track.children.length;
+  slideshows[id].idx = (slideshows[id].idx + dir + total) % total;
+  track.style.transform = `translateX(-${slideshows[id].idx * 100}%)`;
+  counter.textContent = `${slideshows[id].idx + 1} / ${total}`;
+}
+
+// ── FILTER ──
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.project-item').forEach(p => {
+      p.classList.toggle('hidden', f !== 'all' && p.dataset.category !== f);
+    });
+  });
+});
+
+// ── REVEAL ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
