@@ -494,6 +494,7 @@ footer span {
             <iframe src="https://www.youtube.com/embed/0k6btfgf7tw?rel=0" allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
+        <button class="modal-trigger" onclick="openModal('sediments')">Read more →</button>
       </div>
       <div class="project-tag-col"><span class="ptag art">Installation</span></div>
     </div>
@@ -530,6 +531,7 @@ footer span {
             </div>
           </div>
         </div>
+        <button class="modal-trigger" onclick="openModal('lost')">Read more →</button>
       </div>
       <div class="project-tag-col"><span class="ptag film">Photography</span></div>
     </div>
@@ -633,6 +635,7 @@ footer span {
           <span class="stack-tag">Experiment Design</span>
           <span class="stack-tag">Psychoacoustics</span>
         </div>
+        <button class="modal-trigger" onclick="openModal('auditory')">Read more →</button>
       </div>
       <div class="project-tag-col"><span class="ptag research">Research</span></div>
     </div>
@@ -650,6 +653,7 @@ footer span {
           <span class="stack-tag">Behavioural Coding</span>
           <span class="stack-tag">Interview Analysis</span>
         </div>
+        <button class="modal-trigger" onclick="openModal('decision')">Read more →</button>
       </div>
       <div class="project-tag-col"><span class="ptag research">Field Research</span></div>
     </div>
@@ -667,6 +671,7 @@ footer span {
           <span class="stack-tag">Design Space</span>
           <span class="stack-tag">Prototyping</span>
         </div>
+        <button class="modal-trigger" onclick="openModal('charger')">Read more →</button>
       </div>
       <div class="project-tag-col"><span class="ptag research">UX Research</span></div>
     </div>
@@ -688,6 +693,7 @@ footer span {
             <iframe src="https://www.youtube.com/embed/mF82eXubTX4" allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
+        <button class="modal-trigger" onclick="openModal('skate')">Read more →</button>
       </div>
       <div class="project-tag-col"><span class="ptag film">Film</span></div>
     </div>
@@ -696,7 +702,7 @@ footer span {
       <span class="project-num">11</span>
       <div class="project-body">
         <div class="project-top">
-          <h3 class="project-title">VIS 70N — <em>Close Watch</em></h3>
+          <h3 class="project-title"><em>Close Watch</em></h3>
           <span class="project-course">VIS 70N · 2024 · Producer</span>
         </div>
         <p class="project-desc">Produced a narrative short film — suspense, dread, false safety. Coordinated crew of four, managed shoot logistics and post-production pipeline.</p>
@@ -710,6 +716,7 @@ footer span {
             <iframe src="https://www.youtube.com/embed/ZcF__bl-8TE" allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
+        <button class="modal-trigger" onclick="openModal('closewatch')">Read more →</button>
       </div>
       <div class="project-tag-col"><span class="ptag film">Short Film</span></div>
     </div>
@@ -760,6 +767,189 @@ footer span {
 
 <!-- MODALS -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+
+  <!-- AUDITORY RA -->
+  <div class="modal" id="modal-auditory">
+    <button class="modal-close" onclick="closeModal()">Close ✕</button>
+    <span class="modal-tag">Research · Psychoacoustics</span>
+    <h2 class="modal-title">Auditory <em>Cognition</em> RA</h2>
+    <span class="modal-course">UCSD Lab · 2025–2026</span>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Project</span>
+      <p class="modal-text">Research assistant on a study investigating how humans recognise and label everyday household sounds — the creak of a door, water running, footsteps on different surfaces. The core question: what acoustic and contextual cues do people rely on when identifying sounds outside of music or speech?</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Method</span>
+      <p class="modal-text">Sounds were recorded using <strong>binaural microphones placed at ear-canal level</strong>, capturing the spatial and directional qualities that reach the human auditory system. This approach preserves the natural head-related transfer function (HRTF) — the way the shape of the ear and head transforms incoming sound — which is typically lost in standard stereo recordings.<br><br>Participants listened to recordings and responded through a custom experiment interface: <strong>confidence sliders</strong> rating certainty of identification, <strong>free-response descriptors</strong> (what words come to mind?), and <strong>experiential questionnaires</strong> probing associated memories, emotions, and contexts.</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Contribution</span>
+      <p class="modal-text">Assisted with experiment design, participant recruitment and scheduling, data collection sessions, and preliminary data cleaning. The study contributes to a growing field examining how the brain builds auditory scene analysis — how we make sense of a world full of overlapping, unlabelled sound.</p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-stack">
+        <span>Binaural Recording</span><span>Experiment Design</span><span>Psychoacoustics</span><span>HRTF</span><span>Data Collection</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEDIMENTS OF MEMORY -->
+  <div class="modal" id="modal-sediments">
+    <button class="modal-close" onclick="closeModal()">Close ✕</button>
+    <span class="modal-tag">Installation · Art</span>
+    <h2 class="modal-title"><em>Sediments</em> of Memory</h2>
+    <span class="modal-course">VIS 110A · 2026 · Mandeville Gallery, UCSD</span>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Artist Statement</span>
+      <p class="modal-text">Memory is not simply lost over time; it often settles and lodges itself within the body. Inspired by Bessel van der Kolk's <em>The Body Keeps the Score</em>, this installation reflects on fragmented memories that persist even as others fade — particularly in the context of Alzheimer's disease.<br><br>The work is activated when a viewer turns a hand crank. This bodily action gradually illuminates twenty zones of light, translating physical movement into a slow visual unfolding. Each zone is filtered through differently colored materials that act as emotional lenses through which memories are perceived and transformed.<br><br>As the light slowly grows and fades, the installation evokes the unstable nature of remembering — moments when memories briefly surface before slipping away again. Through shifting colour and layered illumination, the work suggests that memories are not fixed records but <strong>sedimentary traces</strong> shaped by time, emotion, and the body.</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Personal Context</span>
+      <p class="modal-text">My grandfather fled North Korea during the Korean War. He raised me. Now he is slowly forgetting me through Alzheimer's. This piece began as an attempt to make that loss <em>felt</em> — not just understood.</p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-stack">
+        <span>Arduino</span><span>LED Strip</span><span>Hand Crank</span><span>Coloured Materials</span><span>Gallery Installation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOST -->
+  <div class="modal" id="modal-lost">
+    <button class="modal-close" onclick="closeModal()">Close ✕</button>
+    <span class="modal-tag">Film Photography · Gallery Exhibition</span>
+    <h2 class="modal-title"><em>Lost</em></h2>
+    <span class="modal-course">VIS 164 · 2025 · Gallery Exhibition</span>
+
+    <div class="modal-section">
+      <span class="modal-section-label">About the Work</span>
+      <p class="modal-text">A film photography series honouring my grandfather — who fled North Korea during the Korean War and raised me. Each object in the series is something I actually used as a child: an 이태리 타올 (Italian exfoliating towel), a 소고 (small drum), a 부채 (folding fan), a 복주머니 (embroidered pouch), a framed photograph of my hometown in Seoul.<br><br>These are things I no longer use often, but they hold the texture of a Korean childhood — the smell of bathtime, the sound of a holiday table, the weight of something carried from one country to another. Now, with Alzheimer's taking my grandfather's memory, they have become the last legible language between us.</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Visual Language</span>
+      <p class="modal-text">Each object is photographed against a stark background with intentional glitch effects — chromatic aberration, digital distortion bleeding into analogue film. The glitch is the thesis: memory is not a clean archive. It breaks, shifts, saturates in some places and fades in others. The Korean flag flies above the American one, but the image tears apart at the point where they meet.</p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-stack">
+        <span>Film Photography</span><span>Digital Glitch</span><span>Cultural Objects</span><span>Gallery Exhibition</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECISION PARALYSIS -->
+  <div class="modal" id="modal-decision">
+    <button class="modal-close" onclick="closeModal()">Close ✕</button>
+    <span class="modal-tag">Field Research · Cognitive Science</span>
+    <h2 class="modal-title">Decision <em>Paralysis</em> on Streaming Platforms</h2>
+    <span class="modal-course">COGS 13 · 2025</span>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Research Question</span>
+      <p class="modal-text">Why does it take so long to choose something to watch? This study investigated decision-making behaviour on streaming platforms through naturalistic observation — watching people actually use Netflix, not asking them to recall it.</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Method</span>
+      <p class="modal-text"><strong>20 observation sessions</strong> across dormitories and shared living spaces at UCSD. A custom ethogram coded: participant type (solo/group), navigation pattern (linear/circular/random), decision strategy (search/browse/revisit), and post-selection satisfaction.<br><br>Sessions ranged from spontaneous viewing to planned movie nights. No intervention — just watching people watch.</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Key Findings</span>
+      <p class="modal-text">Groups averaged <strong>14.7 minutes</strong> to make a selection; solo viewers averaged 6.3 minutes. The most striking pattern was <em>circular navigation</em> — returning repeatedly to the same titles without selecting them. This loop revealed a psychological tension between familiarity-seeking and novelty-seeking under perceived choice overload.<br><br>Paradoxically, having more options did not increase confidence — it increased paralysis. Participants with the most titles browsed the longest and reported the lowest satisfaction after choosing.</p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-stack">
+        <span>Naturalistic Observation</span><span>Ethogram</span><span>Behavioural Coding</span><span>Interview Analysis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARGER REDESIGN -->
+  <div class="modal" id="modal-charger">
+    <button class="modal-close" onclick="closeModal()">Close ✕</button>
+    <span class="modal-tag">UX Research · Product Design</span>
+    <h2 class="modal-title">Portable Charger <em>Redesign</em></h2>
+    <span class="modal-course">DSGN 1 · 2025</span>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Brief</span>
+      <p class="modal-text">A full end-to-end UX design process applied to a product almost everyone owns but rarely loves: the portable phone charger. The goal was not to redesign for aesthetics, but to identify genuine pain points through user research and address them systematically.</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Process</span>
+      <p class="modal-text"><strong>User interviews</strong> (8 participants) identified three recurring frustrations: forgetting the cable, not knowing remaining capacity until it dies, and the awkwardness of charging while holding the phone. A survey of 40 respondents confirmed these as the most common issues across age groups.<br><br>Design space mapping placed competing solutions across axes of portability vs. functionality. The proposed redesign introduced: <strong>magnetic cable attachment</strong> (integrated, no loose parts), a <strong>real-time LED capacity bar</strong> visible without plugging in, and an <strong>adjustable grip bracket</strong> for comfortable simultaneous phone use.</p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-stack">
+        <span>User Interviews</span><span>Survey Analysis</span><span>Design Space Mapping</span><span>Prototyping</span><span>Usability Testing</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SKATE FILM -->
+  <div class="modal" id="modal-skate">
+    <button class="modal-close" onclick="closeModal()">Close ✕</button>
+    <span class="modal-tag">Film Photography · Moving Image</span>
+    <h2 class="modal-title"><em>It All Starts</em> When You Are Here</h2>
+    <span class="modal-course">VIS Studio · 2024</span>
+
+    <div class="modal-section">
+      <span class="modal-section-label">About</span>
+      <p class="modal-text">A moving-image essay built from film photographs of San Diego's skateboarding culture — the spots, the gaps, the idle hours between runs. Shot on film for the grain, the imprecision, the way analogue slows time down just enough to notice what's really there.<br><br>The title is less about skateboarding and more about attention: the particular quality of presence that happens when you commit to a place. Each frame is a moment of someone being entirely where they are.</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Form</span>
+      <p class="modal-text">Slow transitions, ambient sound, minimal editing intervention. The pacing mirrors the rhythm of an afternoon at a skate spot — long stretches of nothing, punctuated by motion. An ode to presence, place, and the people who return to the same concrete again and again.</p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-stack">
+        <span>Film Photography</span><span>Video Editing</span><span>Moving Image Essay</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOSE WATCH -->
+  <div class="modal" id="modal-closewatch">
+    <button class="modal-close" onclick="closeModal()">Close ✕</button>
+    <span class="modal-tag">Short Film · Producer</span>
+    <h2 class="modal-title"><em>Close Watch</em></h2>
+    <span class="modal-course">VIS 70N · 2024</span>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Synopsis</span>
+      <p class="modal-text">A college party. A string of unsolved murders on the trail near campus. A girl who leaves early because she's too drunk. A guy who insists on walking her home — because there's a killer out there, because he just wants to make sure she's safe.<br><br>The film uses the language of care to build dread. Every gesture of concern is also a step closer. The audience is asked to hold two readings simultaneously — and the final line collapses them.</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Role & Production</span>
+      <p class="modal-text">As producer, I coordinated a crew of four across pre-production, shoot logistics, and post-production. The film was made with no budget, shot on location across UCSD's campus and surrounding trails, and edited to sustain a slow, creeping tension rather than rely on conventional horror mechanics.</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Theme</span>
+      <p class="modal-text">The film is interested in how violence hides inside the syntax of protection — how the same words and gestures that signal safety can conceal threat. It does not resolve this ambiguity. It sits in it.</p>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-stack">
+        <span>Producer</span><span>Narrative Film</span><span>Psychological Thriller</span><span>Team Leadership</span>
+      </div>
+    </div>
+  </div>
 
   <!-- TIDE INK -->
   <div class="modal" id="modal-tide">
