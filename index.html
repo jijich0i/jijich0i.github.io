@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JiJi Choi</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -22,8 +22,9 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'EB Garamond', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 18px;
+  font-weight: 300;
   line-height: 1.65;
   overflow-x: hidden;
 }
@@ -448,7 +449,7 @@ footer span {
 <!-- HERO -->
 <section class="hero">
   <p class="hero-kicker">UCSD · Cognitive Science & Computing Arts</p>
-  <h1 class="hero-name">JiJi<br><em>Choi</em></h1>
+  <h1 class="hero-name" style="font-family: 'DM Sans', sans-serif; font-weight: 300;">JiJi <em style="font-style: normal; font-weight: 300;">Choi</em></h1>
   <p class="hero-bio">
     I build installations, run experiments, and write code.
   </p>
@@ -588,7 +589,7 @@ footer span {
       <div class="project-body">
         <div class="project-top">
           <h3 class="project-title">Real-time <em>Pixel</em> Pipeline</h3>
-          <span class="project-course">VIS Studio · 2025</span>
+          <span class="project-course">VIS 145A · 2025</span>
         </div>
         <p class="project-desc">Node-based network in TouchDesigner with live pixel manipulation — Displacement, Contrast, Pro-Black Level — creating generative art that responds to parameter input with zero latency. Experiments in Visual Hierarchy and Flow state induction.</p>
         <div class="project-stack">
@@ -596,6 +597,10 @@ footer span {
           <span class="stack-tag">GLSL</span>
           <span class="stack-tag">Generative Art</span>
         </div>
+        <div class="project-media">
+          <img src="images/touchdesigner.png" alt="Real-time Pixel Pipeline — TouchDesigner" style="width:100%;display:block;border:1px solid var(--border);">
+        </div>
+        <button class="modal-trigger" onclick="openModal('touchdesigner')">Read more →</button>
       </div>
       <div class="project-tag-col"><span class="ptag art">Generative</span></div>
     </div>
@@ -767,6 +772,34 @@ footer span {
 
 <!-- MODALS -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+
+  <!-- TOUCHDESIGNER -->
+  <div class="modal" id="modal-touchdesigner">
+    <button class="modal-close" onclick="closeModal()">Close ✕</button>
+    <span class="modal-tag">Generative Art · Real-time</span>
+    <h2 class="modal-title">Real-time <em>Pixel</em> Pipeline</h2>
+    <span class="modal-course">VIS 145A · 2025</span>
+
+    <div class="modal-section">
+      <span class="modal-section-label">About</span>
+      <p class="modal-text">A node-based generative pipeline built in TouchDesigner, using a source image of Goku from Dragon Ball as input. The project explores what happens when you push pixel manipulation to its structural limits — Displacement, Contrast, UV Weight, and Pre-Black Level all adjusted in real-time to transform a recognisable image into something between signal and noise.</p>
+    </div>
+
+    <div class="modal-section">
+      <span class="modal-section-label">Process</span>
+      <p class="modal-text">Each parameter in the node network affects the output live, with zero latency. At high contrast and displacement values, the image explodes outward from its centre — the radial burst visible in the output is not a filter but an emergent property of the pixel flow. The result sits somewhere between portrait and abstract: Goku is still legible at the core, but the edges dissolve into pure motion.<br><br>Exported at 60fps, the pipeline was designed as a study in <strong>visual hierarchy under transformation</strong> — how much can you distort an image before recognition collapses?</p>
+    </div>
+
+    <div class="modal-section">
+      <img src="images/touchdesigner.png" alt="Real-time Pixel Pipeline" class="modal-img">
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-stack">
+        <span>TouchDesigner</span><span>GLSL</span><span>Real-time Rendering</span><span>Generative Art</span><span>Pixel Manipulation</span>
+      </div>
+    </div>
+  </div>
 
   <!-- AUDITORY RA -->
   <div class="modal" id="modal-auditory">
